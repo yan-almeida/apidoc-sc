@@ -332,14 +332,14 @@
             "group": "Parameter",
             "type": "string",
             "optional": false,
-            "field": "Telefone",
-            "description": "<p>Celular    Firstname of the User.</p>"
+            "field": "Celular",
+            "description": "<p>Telefone de contato dos funcionários.</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Exemplo de requisição:",
+          "title": "Formato de requisição ():",
           "content": "{\n\"cpf_usuario\": \"000.000.000-00\",\n\"email_usuario\": \"yan@almeida.com\",\n\"nome_usuario\": \"Yan Almeida Garcia\",\n\"tel_usuario\": \"(00) 91234-5678\",\n\"setor_usuario\": 1,\n\"sexo_usuario\": 1\n}",
           "type": "json"
         }
