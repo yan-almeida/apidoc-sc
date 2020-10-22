@@ -48,13 +48,13 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "UnauthorizedToken",
-            "description": "<p>Token não passador - Authorization.</p>"
+            "description": "<p>Token não passado via Bearer Authorization.</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Error 404",
+          "title": "Not found",
           "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\"\n  \"metadata\": {},\n  \"status\": 404\n}",
           "type": "json"
         },
@@ -138,13 +138,13 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "UnauthorizedToken",
-            "description": "<p>Token não passador - Authorization.</p>"
+            "description": "<p>Token não passado via Bearer Authorization.</p>"
           }
         ]
       },
       "examples": [
         {
-          "title": "Error 404",
+          "title": "Not found",
           "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\"\n  \"metadata\": {},\n  \"status\": 404\n}",
           "type": "json"
         },
