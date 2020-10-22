@@ -1,6 +1,6 @@
 define({
   "name": "Support Center",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "API Node/Express",
   "title": "Support Center API Docs",
   "sampleUrl": false,
@@ -8,7 +8,7 @@ define({
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2020-10-09T03:22:06.432Z",
+    "time": "2020-10-22T19:03:38.062Z",
     "url": "https://apidocjs.com",
     "version": "0.25.0"
   }
