@@ -12,19 +12,6 @@
         "name": "Coord"
       }
     ],
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "string",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Coord JWT key - token</p>"
-          }
-        ]
-      }
-    },
     "parameter": {
       "fields": {
         "Parameter": [
@@ -39,26 +26,28 @@
       },
       "examples": [
         {
-          "title": "Formato de requisição válido",
-          "content": "{\n  \"cpf\": \"000.000.251-55\",\n  \"email\": \"yanalmeidagarcia@gmail.com\",\n  \"name\": \"Yan Almeida Garcia\",\n  \"phone\": \"(61) 14444-4\",\n  \"sector\": 2,\n  \"gender\": 1\n}",
-          "type": "json"
-        },
-        {
-          "title": "Formato de requisição inválido",
+          "title": "Req inválida",
           "content": "{\n  \"cpf\": \"\",\n  \"email\": \"yanalmeidagarciagmail\",\n  \"name\": \"12314\",\n  \"phone\": \"(61) 14444-4\",\n  \"sector\": \"a\",\n  \"gender\": \"b\"\n}",
           "type": "json"
         }
       ]
     },
+    "examples": [
+      {
+        "title": "Req válida",
+        "content": "{\n  \"cpf\": \"000.000.251-55\",\n  \"email\": \"yanalmeidagarcia@gmail.com\",\n  \"name\": \"Yan Almeida Garcia\",\n  \"phone\": \"(61) 14444-4\",\n  \"sector\": 2,\n  \"gender\": 1\n}",
+        "type": "json"
+      }
+    ],
     "success": {
       "examples": [
         {
-          "title": "Válido",
+          "title": "Res válida",
           "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Cadastro efetuado com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
           "type": "json"
         },
         {
-          "title": "Inválido",
+          "title": "Res inválida",
           "content": "HTTP/1.1 (400) OK\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"cpf\": \"CPF obrigatório.\",\n      \"email\": \"Email não é válido.\",\n      \"name\": \"Nome não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n  \"status\": 400\n}",
           "type": "json"
         }
@@ -66,6 +55,26 @@
     },
     "filename": "./src/controllers/users.js",
     "groupTitle": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Coord JWT key - token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  Authorization: Bearer {{tokenCoord}}\n  \"Authorization\": \"Bearer thisisjwttokenshouldbeonger\"\n}",
+          "type": "json"
+        }
+      ]
+    },
     "error": {
       "fields": {
         "Error 4xx": [
@@ -98,7 +107,7 @@
       "examples": [
         {
           "title": "Conflict",
-          "content": "HTTP/1.1 (409) Data Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 409\n}",
+          "content": "HTTP/1.1 (409) Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 409\n}",
           "type": "json"
         },
         {
@@ -121,7 +130,7 @@
   },
   {
     "type": "put",
-    "url": "/users/id_user",
+    "url": "/users/:id_user",
     "title": "👤 Edit user",
     "version": "0.1.0",
     "name": "Edit_user",
@@ -132,6 +141,77 @@
         "name": "Coord"
       }
     ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id_user",
+            "description": "<p>Id funcionário.</p>"
+          }
+        ],
+        "Body": [
+          {
+            "group": "Body",
+            "type": "number",
+            "optional": false,
+            "field": "Sector",
+            "description": "<p>Setor do funcionário (definirá as permissões dentro da aplicação).</p>"
+          },
+          {
+            "group": "Body",
+            "type": "string",
+            "optional": false,
+            "field": "Email",
+            "description": "<p>E-mail do(s) funcionário(s).</p>"
+          },
+          {
+            "group": "Body",
+            "type": "number",
+            "optional": false,
+            "field": "Gender",
+            "description": "<p>Sexo do funcionário.</p>"
+          },
+          {
+            "group": "Body",
+            "type": "string",
+            "optional": false,
+            "field": "Phone",
+            "description": "<p>Telefone de contato dos funcionário.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Req válida",
+        "content": "{\n  \"email\": \"yanalmeidagarcia@gmail.com\",\n  \"phone\": \"(61) 14444-4444\",\n  \"sector\": 2,\n  \"gender\": 1\n}",
+        "type": "json"
+      },
+      {
+        "title": "Req inválida",
+        "content": "{\n  \"email\": \"yanalmeidagarciagmail\",\n  \"phone\": \"(61) 14444-4\",\n  \"sector\": \"a\",\n  \"gender\": \"b\"\n}",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Res válida",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Dados alterados com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "type": "object"
+        },
+        {
+          "title": "Res inválida",
+          "content": "HTTP/1.1 (400) OK\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"email\": \"Email não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n  \"status\": 400\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "./src/controllers/users.js",
+    "groupTitle": "Users",
     "header": {
       "fields": {
         "Header": [
@@ -143,77 +223,15 @@
             "description": "<p>Coord JWT key - token</p>"
           }
         ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "id",
-            "description": "<p>funcionário.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "number",
-            "optional": false,
-            "field": "Sector",
-            "description": "<p>Setor do funcionário (definirá as permissões dentro da aplicação).</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "Email",
-            "description": "<p>E-mail do(s) funcionário(s).</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "number",
-            "optional": false,
-            "field": "Gender",
-            "description": "<p>Sexo do funcionário.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "Phone",
-            "description": "<p>Telefone de contato dos funcionários.</p>"
-          }
-        ]
       },
       "examples": [
         {
-          "title": "Formato de requisição válido",
-          "content": "{\n  \"email\": \"yanalmeidagarcia@gmail.com\",\n  \"phone\": \"(61) 14444-4444\",\n  \"sector\": 2,\n  \"gender\": 1\n}",
-          "type": "json"
-        },
-        {
-          "title": "Formato de requisição inválido",
-          "content": "{\n  \"email\": \"yanalmeidagarciagmail\",\n  \"phone\": \"(61) 14444-4\",\n  \"sector\": \"a\",\n  \"gender\": \"b\"\n}",
+          "title": "Header-Example:",
+          "content": "{\n  Authorization: Bearer {{tokenCoord}}\n  \"Authorization\": \"Bearer thisisjwttokenshouldbeonger\"\n}",
           "type": "json"
         }
       ]
     },
-    "success": {
-      "examples": [
-        {
-          "title": "Válido",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Dados alterados com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
-          "type": "json"
-        },
-        {
-          "title": "Inválido",
-          "content": "HTTP/1.1 (400) OK\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"email\": \"Email não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n  \"status\": 400\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "./src/controllers/users.js",
-    "groupTitle": "Users",
     "error": {
       "fields": {
         "Error 4xx": [
@@ -246,7 +264,7 @@
       "examples": [
         {
           "title": "Conflict",
-          "content": "HTTP/1.1 (409) Data Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 409\n}",
+          "content": "HTTP/1.1 (409) Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 409\n}",
           "type": "json"
         },
         {
@@ -280,19 +298,6 @@
         "name": "Coord"
       }
     ],
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "string",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Coord JWT key - token</p>"
-          }
-        ]
-      }
-    },
     "success": {
       "examples": [
         {
@@ -304,6 +309,26 @@
     },
     "filename": "./src/controllers/users.js",
     "groupTitle": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Coord JWT key - token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  Authorization: Bearer {{tokenCoord}}\n  \"Authorization\": \"Bearer thisisjwttokenshouldbeonger\"\n}",
+          "type": "json"
+        }
+      ]
+    },
     "error": {
       "fields": {
         "Error 4xx": [
@@ -359,7 +384,7 @@
   },
   {
     "type": "get",
-    "url": "/users/id_user",
+    "url": "/users/:id_user",
     "title": "👤 Unique user",
     "version": "0.1.0",
     "name": "List_One",
@@ -370,19 +395,6 @@
         "name": "Coord"
       }
     ],
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "string",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Coord JWT key - token</p>"
-          }
-        ]
-      }
-    },
     "parameter": {
       "fields": {
         "Parameter": [
@@ -407,6 +419,26 @@
     },
     "filename": "./src/controllers/users.js",
     "groupTitle": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Coord JWT key - token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  Authorization: Bearer {{tokenCoord}}\n  \"Authorization\": \"Bearer thisisjwttokenshouldbeonger\"\n}",
+          "type": "json"
+        }
+      ]
+    },
     "error": {
       "fields": {
         "Error 4xx": [
