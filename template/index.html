@@ -9,12 +9,19 @@
   <link href="vendor/prettify.css" rel="stylesheet" media="screen">
   <link href="css/style.css" rel="stylesheet" media="screen, print">
   <link href="img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" href="vendor/dark.css">
   <script src="vendor/polyfill.js"></script>
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    .tab-content {
+      filter: invert(0) hue-rotate(250deg);
+    }
+  </style>
 </head>
 
-<body>
+<body style="background: #eee;">
 
   <script id="template-sidenav" type="text/x-handlebars-template">
     <nav id="scrollingNav">
@@ -178,9 +185,9 @@
 
       </article>
     </div>
-    <div class="col-md-4 section-example no-float">
+    <div class="col-md-4 section-example no-float light-theme">
       {{#if_gt article.examples.length compare=0}}
-        <ul class="nav nav-tabs nav-tabs-examples">
+        <ul class="nav nav-tabs nav-tabs-examples light-theme">
           {{#each article.examples}}
             <li{{#if_eq @index compare=0}} class="active"{{/if_eq}}>
               <a href="#examples-{{../id}}-{{@index}}">{{title}}</a>
@@ -704,22 +711,22 @@
 
 
   <!-- Modal -->
-<div class="modal animated fadeIn" id="jsonModal" tabindex="-1" role="dialog" aria-labelledby="jsonModalLabel">
-  <div class="modal-dialog modal-md" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="modal-clipboard"><i class="material-icons">content_copy</i></div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"></h4>
-      </div>
-      <div class="modal-body" id="json-pre"></div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <div class="modal animated fadeIn" id="jsonModal" tabindex="-1" role="dialog" aria-labelledby="jsonModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-clipboard"><i class="material-icons">content_copy</i></div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"></h4>
+        </div>
+        <div class="modal-body" id="json-pre"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
+    <pre id="preData" style="visibility: hidden"></pre>
   </div>
-  <pre id="preData" style="visibility: hidden"></pre>
-</div>
 
   <script data-main="main.js" src="vendor/require.min.js"></script>
 

@@ -129,6 +129,116 @@
     }
   },
   {
+    "type": "delete",
+    "url": "/users/:id_user",
+    "title": "👤 Delete user",
+    "version": "0.1.0",
+    "name": "Delete_user",
+    "group": "Users",
+    "description": "<p>Deleta um funcionário</p>",
+    "permission": [
+      {
+        "name": "Coord"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id_user",
+            "description": "<p>Id funcionário.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Res válida",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Dados alterados com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./src/controllers/users.js",
+    "groupTitle": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Coord JWT key - token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  Authorization: Bearer {{tokenCoord}}\n  \"Authorization\": \"Bearer thisisjwttokenshouldbeonger\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>Dado(s) solicitado(s) não encontrado(s).</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnauthorizedJwtExpired",
+            "description": "<p>JSON Web Token expirado.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnauthorizedSector",
+            "description": "<p>Decoded token com dados inválidos.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnauthorizedToken",
+            "description": "<p>Token não passado via Bearer Authorization.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Not found",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "type": "json"
+        },
+        {
+          "title": "Expired",
+          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "type": "json"
+        },
+        {
+          "title": "Sector",
+          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "type": "json"
+        },
+        {
+          "title": "Token",
+          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "type": "put",
     "url": "/users/:id_user",
     "title": "👤 Edit user",
@@ -238,6 +348,12 @@
           {
             "group": "Error 4xx",
             "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>Dado(s) solicitado(s) não encontrado(s).</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
             "field": "DataConflict",
             "description": "<p>Retorna um erro caso haja dado(s) já cadastrado(s).</p>"
           },
@@ -262,6 +378,11 @@
         ]
       },
       "examples": [
+        {
+          "title": "Not found",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "type": "json"
+        },
         {
           "title": "Conflict",
           "content": "HTTP/1.1 (409) Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 409\n}",
@@ -292,7 +413,7 @@
     "version": "0.1.0",
     "name": "List",
     "group": "Users",
-    "description": "<p>Retorna todos os funcionários</p>",
+    "description": "<p>Retorna todos4 os funcionários</p>",
     "permission": [
       {
         "name": "Coord"
