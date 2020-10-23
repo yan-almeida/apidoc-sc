@@ -19,21 +19,21 @@ define({ "api": [
             "group": "Parameter",
             "type": "string",
             "optional": false,
-            "field": "Nome",
+            "field": "name",
             "description": "<p>Nome do funcionário.</p>"
           },
           {
             "group": "Parameter",
             "type": "number",
             "optional": false,
-            "field": "Setor",
+            "field": "Sector",
             "description": "<p>Setor do funcionário (definirá as permissões dentro da aplicação).</p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
-            "field": "E-mail",
+            "field": "Email",
             "description": "<p>E-mail do(s) funcionário(s).</p>"
           },
           {
@@ -47,14 +47,14 @@ define({ "api": [
             "group": "Parameter",
             "type": "number",
             "optional": false,
-            "field": "Sexo",
+            "field": "Gender",
             "description": "<p>Sexo do funcionário.</p>"
           },
           {
             "group": "Parameter",
             "type": "string",
             "optional": false,
-            "field": "Celular",
+            "field": "Phone",
             "description": "<p>Telefone de contato dos funcionários.</p>"
           }
         ]
@@ -62,7 +62,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Formato de requisição válido",
-          "content": "{\n\"cpf_usuario\": \"000.000.000-00\",\n\"email_usuario\": \"yan@almeida.com\",\n\"nome_usuario\": \"Yan Almeida Garcia\",\n\"tel_usuario\": \"(00) 91234-5678\",\n\"setor_usuario\": 1,\n\"sexo_usuario\": 1\n}",
+          "content": "{\n  \"cpf\": \"000.000.251-55\",\n  \"email\": \"yanalmeidagarcia@gmail.com\",\n  \"name\": \"Yan Almeida Garcia\",\n  \"phone\": \"(61) 14444-4\",\n  \"sector\": 2,\n  \"gender\": 1\n}",
           "type": "json"
         },
         {
@@ -120,7 +120,135 @@ define({ "api": [
       "examples": [
         {
           "title": "Conflict",
-          "content": "HTTP/1.1 (409) Data Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\"\n  \"metadata\": {},\n  \"status\": 409\n}",
+          "content": "HTTP/1.1 (409) Data Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 409\n}",
+          "type": "json"
+        },
+        {
+          "title": "Expired",
+          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "type": "json"
+        },
+        {
+          "title": "Sector",
+          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "type": "json"
+        },
+        {
+          "title": "Token",
+          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "put",
+    "url": "/users",
+    "title": "👤 Edit user",
+    "version": "0.1.0",
+    "name": "Edit_user",
+    "group": "Users",
+    "description": "<p>Altera os dados de um funcionário</p>",
+    "permission": [
+      {
+        "name": "{Coord}"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "Sector",
+            "description": "<p>Setor do funcionário (definirá as permissões dentro da aplicação).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "Email",
+            "description": "<p>E-mail do(s) funcionário(s).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "Gender",
+            "description": "<p>Sexo do funcionário.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "Phone",
+            "description": "<p>Telefone de contato dos funcionários.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Formato de requisição válido",
+          "content": "{\n  \"email\": \"yanalmeidagarcia@gmail.com\",\n  \"phone\": \"(61) 14444-4444\",\n  \"sector\": 2,\n  \"gender\": 1\n}",
+          "type": "json"
+        },
+        {
+          "title": "Formato de requisição inválido",
+          "content": "{\n  \"email\": \"yanalmeidagarciagmail\",\n  \"phone\": \"(61) 14444-4\",\n  \"sector\": \"a\",\n  \"gender\": \"b\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Válido",
+          "content": "HTTP/1.1 200 OK\n{\n  \"message\": \"Dados alterados com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "type": "json"
+        },
+        {
+          "title": "Inválido",
+          "content": "HTTP/1.1 400 OK\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"email\": \"Email não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n  \"status\": 400\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./src/controllers/users.js",
+    "groupTitle": "Users",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "DataConflict",
+            "description": "<p>Retorna um erro caso haja dado(s) já cadastrado(s).</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnauthorizedJwtExpired",
+            "description": "<p>JSON Web Token expirado.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnauthorizedSector",
+            "description": "<p>Decoded token com dados inválidos.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnauthorizedToken",
+            "description": "<p>Token não passado via Bearer Authorization.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Conflict",
+          "content": "HTTP/1.1 (409) Data Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 409\n}",
           "type": "json"
         },
         {
@@ -197,7 +325,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Not found",
-          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\"\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
           "type": "json"
         },
         {
@@ -220,7 +348,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/users/:id_user",
+    "url": "/users/id_user",
     "title": "👤 Unique user",
     "version": "0.1.0",
     "name": "List_One",
@@ -287,7 +415,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Not found",
-          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\"\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
           "type": "json"
         },
         {
