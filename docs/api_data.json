@@ -1,6 +1,63 @@
 [
   {
     "type": "post",
+    "url": "/auth/sign-in",
+    "title": "⛔ Login user",
+    "version": "0.1.0",
+    "name": "Login_user",
+    "group": "Auth",
+    "description": "<p>Loga um usuário</p>",
+    "parameter": {
+      "fields": {
+        "Body": [
+          {
+            "group": "Body",
+            "type": "string",
+            "optional": false,
+            "field": "Login",
+            "description": "<p>Login de acesso do usuário.</p>"
+          },
+          {
+            "group": "Body",
+            "type": "string",
+            "optional": false,
+            "field": "Pass",
+            "description": "<p>Senha de acesso do usuário.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Req válida",
+        "content": "{\n  \"login\": \"yan.garcia-203\",\n  \"pass\": \"ry9hyqbq\" \n}",
+        "type": "json"
+      },
+      {
+        "title": "Req inválida",
+        "content": "{\n  \"login\": \"\",\n  \"pass\": \"ry2tyqsq\" \n}",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Res válida",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Login efetuado com sucesso.\",\n  \"data\": {\n    \"id_user\": 1,\n    \"sector\": 1\n  },\n  \"metadata\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.\n    eyJpZF91c2VyIjoyMiwic2VjdG9yIjoyLCJpYXQiOjE2MDM1NjQ2NzAsImV4cCI6MTYwMzU3MTg3MH0.\n    MRZAQE0QO_ugPI0Ejof4P4VYk4__pE7L5SxPypFPM7U\"\n  },\n  \"status\": 200\n}",
+          "type": "object"
+        },
+        {
+          "title": "Res inválida",
+          "content": "HTTP/1.1 (400) OK\n{\n  \"message\": \"Credenciais inválidas.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 400\n}",
+          "type": "object"
+        }
+      ]
+    },
+    "filename": "./src/controllers/auth.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "post",
     "url": "/users",
     "title": "👤 New user",
     "version": "0.1.0",
@@ -612,62 +669,5 @@
         }
       ]
     }
-  },
-  {
-    "type": "post",
-    "url": "/auth/sign-in",
-    "title": "⛔ Login user",
-    "version": "0.1.0",
-    "name": "Login_user",
-    "group": "authentication",
-    "description": "<p>Loga um usuário</p>",
-    "parameter": {
-      "fields": {
-        "Body": [
-          {
-            "group": "Body",
-            "type": "string",
-            "optional": false,
-            "field": "Login",
-            "description": "<p>Login de acesso do usuário.</p>"
-          },
-          {
-            "group": "Body",
-            "type": "string",
-            "optional": false,
-            "field": "Pass",
-            "description": "<p>Senha de acesso do usuário.</p>"
-          }
-        ]
-      }
-    },
-    "examples": [
-      {
-        "title": "Req válida",
-        "content": "{\n  \"login\": \"yan.garcia-203\",\n  \"pass\": \"ry9hyqbq\" \n}",
-        "type": "json"
-      },
-      {
-        "title": "Req inválida",
-        "content": "{\n  \"login\": \"\",\n  \"pass\": \"ry2tyqsq\" \n}",
-        "type": "json"
-      }
-    ],
-    "success": {
-      "examples": [
-        {
-          "title": "Res válida",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Login efetuado com sucesso.\",\n  \"data\": {\n    \"id_user\": 22,\n    \"sector\": 2\n  },\n  \"metadata\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoyMiwic2VjdG9yIjoyLCJpYXQiOjE2MDM1NjQ2NzAsImV4cCI6MTYwMzU3MTg3MH0.MRZAQE0QO_ugPI0Ejof4P4VYk4__pE7L5SxPypFPM7U\"\n  },\n  \"status\": 200\n}",
-          "type": "object"
-        },
-        {
-          "title": "Res inválida",
-          "content": "HTTP/1.1 (400) OK\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"email\": \"Email não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n  \"status\": 400\n}",
-          "type": "object"
-        }
-      ]
-    },
-    "filename": "./src/controllers/auth.js",
-    "groupTitle": "authentication"
   }
 ]
