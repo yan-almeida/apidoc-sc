@@ -1,6 +1,85 @@
 [
   {
     "type": "post",
+    "url": "/auth/forgot-password",
+    "title": "❓ Forgot password",
+    "version": "0.1.0",
+    "name": "Forgot_password",
+    "group": "Auth",
+    "description": "<p>Envial um email ao funcionário contendo o URL para resetar a senha de acesso</p>",
+    "parameter": {
+      "fields": {
+        "Body": [
+          {
+            "group": "Body",
+            "type": "string",
+            "optional": false,
+            "field": "CPF",
+            "description": "<p>CPF do funcionário.</p>"
+          },
+          {
+            "group": "Body",
+            "type": "string",
+            "optional": false,
+            "field": "URL",
+            "description": "<p>Endpoint (window.location.href) partindo do front.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Req válida",
+        "content": "{\n  \"cpf\": \"000.000.000-00\",\n  \"url\": \"http://localhost:3001/v1/api\"\n}",
+        "type": "json"
+      },
+      {
+        "title": "Req inválida",
+        "content": "{\n  \"cpf\": \"a0.00.000-00\",\n  \"url\": \"\"\n}",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Res válida",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Email enviado com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Res inválida - CPF ",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"CPF não encontrado\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "type": "json"
+        },
+        {
+          "title": "Res inválida - URL",
+          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Formato de URL inválido.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 400\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./src/controllers/auth.js",
+    "groupTitle": "Auth",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/json</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
     "url": "/auth/sign-in",
     "title": "⛔ Login user",
     "version": "0.1.0",
@@ -43,18 +122,31 @@
       "examples": [
         {
           "title": "Res válida",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Login efetuado com sucesso.\",\n  \"data\": {\n    \"id_user\": 1,\n    \"sector\": 1\n  },\n  \"metadata\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.\n    eyJpZF91c2VyIjoyMiwic2VjdG9yIjoyLCJpYXQiOjE2MDM1NjQ2NzAsImV4cCI6MTYwMzU3MTg3MH0.\n    MRZAQE0QO_ugPI0Ejof4P4VYk4__pE7L5SxPypFPM7U\"\n  },\n  \"status\": 200\n}",
-          "type": "object"
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Login efetuado com sucesso.\",\n  \"data\": {\n    \"id_user\": 1,\n    \"sector\": 1\n  },\n  \"metadata\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n  },\n  \"status\": 200\n}",
+          "type": "json"
         },
         {
           "title": "Res inválida",
-          "content": "HTTP/1.1 (400) OK\n{\n  \"message\": \"Credenciais inválidas.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 400\n}",
-          "type": "object"
+          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Credenciais inválidas.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 400\n}",
+          "type": "json"
         }
       ]
     },
     "filename": "./src/controllers/auth.js",
-    "groupTitle": "Auth"
+    "groupTitle": "Auth",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/json</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "post",
@@ -71,13 +163,48 @@
     ],
     "parameter": {
       "fields": {
-        "Parameter": [
+        "Body": [
           {
-            "group": "Parameter",
-            "type": "int",
+            "group": "Body",
+            "type": "string",
             "optional": false,
-            "field": "id_user",
-            "description": "<p>Id do funcionário.</p>"
+            "field": "Cpf",
+            "description": "<p>CPF do funcionário.</p>"
+          },
+          {
+            "group": "Body",
+            "type": "string",
+            "optional": false,
+            "field": "Email",
+            "description": "<p>E-mail do funcionário.</p>"
+          },
+          {
+            "group": "Body",
+            "type": "string",
+            "optional": false,
+            "field": "Name",
+            "description": "<p>Nome do funcionário.</p>"
+          },
+          {
+            "group": "Body",
+            "type": "number",
+            "optional": false,
+            "field": "Sector",
+            "description": "<p>Setor do funcionário (definirá as permissões dentro da aplicação).</p>"
+          },
+          {
+            "group": "Body",
+            "type": "number",
+            "optional": false,
+            "field": "Gender",
+            "description": "<p>Sexo do funcionário.</p>"
+          },
+          {
+            "group": "Body",
+            "type": "string",
+            "optional": false,
+            "field": "Phone",
+            "description": "<p>Telefone de contato dos funcionário.</p>"
           }
         ]
       },
@@ -105,7 +232,7 @@
         },
         {
           "title": "Res inválida",
-          "content": "HTTP/1.1 (400) OK\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"cpf\": \"CPF obrigatório.\",\n      \"email\": \"Email não é válido.\",\n      \"name\": \"Nome não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n  \"status\": 400\n}",
+          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"cpf\": \"CPF obrigatório.\",\n      \"email\": \"Email não é válido.\",\n      \"name\": \"Nome não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n  \"status\": 400\n}",
           "type": "json"
         }
       ]
@@ -121,6 +248,13 @@
             "optional": false,
             "field": "Authorization",
             "description": "<p>JWT key - token</p>"
+          },
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/json</p>"
           }
         ]
       },
@@ -231,6 +365,13 @@
             "optional": false,
             "field": "Authorization",
             "description": "<p>JWT key - token</p>"
+          },
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/json</p>"
           }
         ]
       },
@@ -372,7 +513,7 @@
         },
         {
           "title": "Res inválida",
-          "content": "HTTP/1.1 (400) OK\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"email\": \"Email não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n  \"status\": 400\n}",
+          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"email\": \"Email não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n  \"status\": 400\n}",
           "type": "object"
         }
       ]
@@ -388,6 +529,13 @@
             "optional": false,
             "field": "Authorization",
             "description": "<p>JWT key - token</p>"
+          },
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/json</p>"
           }
         ]
       },
@@ -496,6 +644,13 @@
             "optional": false,
             "field": "Authorization",
             "description": "<p>JWT key - token</p>"
+          },
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/json</p>"
           }
         ]
       },
@@ -606,6 +761,13 @@
             "optional": false,
             "field": "Authorization",
             "description": "<p>JWT key - token</p>"
+          },
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/json</p>"
           }
         ]
       },
