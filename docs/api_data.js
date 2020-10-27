@@ -192,7 +192,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Res válida",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Email enviado com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Dados de acesso enviados no email yan@almeida.com\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
           "type": "json"
         },
         {
