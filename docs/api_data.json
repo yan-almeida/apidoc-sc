@@ -150,6 +150,95 @@
   },
   {
     "type": "post",
+    "url": "/auth/reset-password",
+    "title": "❗ Reset password",
+    "version": "0.1.0",
+    "name": "Reset_password",
+    "group": "Auth",
+    "description": "<p>Envial um email ao funcionário contendo o URL para resetar a senha de acesso</p>",
+    "parameter": {
+      "fields": {
+        "Body": [
+          {
+            "group": "Body",
+            "type": "string",
+            "optional": false,
+            "field": "CPF",
+            "description": "<p>CPF do funcionário.</p>"
+          },
+          {
+            "group": "Body",
+            "type": "string",
+            "optional": false,
+            "field": "Token",
+            "description": "<p>Url encoded token.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Req válida",
+        "content": "{\n  \"cpf\": \"000.020.000-13\",\n  \"resetToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n}",
+        "type": "json"
+      },
+      {
+        "title": "Req inválida",
+        "content": "{\n  \"cpf\": \"a0.00.000-00\",\n  \"resetToken\": \"\"\n}",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Res válida",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Email enviado com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "type": "json"
+        },
+        {
+          "title": "Res inválida - CPF ",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"CPF não encontrado\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./src/controllers/auth.js",
+    "groupTitle": "Auth",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>application/json</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UnauthorizedJwtExpired",
+            "description": "<p>JSON Web Token expirado.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Expired",
+          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
     "url": "/users",
     "title": "👤 New user",
     "version": "0.1.0",
