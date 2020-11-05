@@ -43,7 +43,7 @@
       "examples": [
         {
           "title": "Res válida",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Email enviado com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Email enviado com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -52,12 +52,12 @@
       "examples": [
         {
           "title": "Res inválida - CPF ",
-          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"CPF não encontrado\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"CPF não encontrado\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Res inválida - URL",
-          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Formato de URL inválido.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 400\n}",
+          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Formato de URL inválido.\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -122,12 +122,12 @@
       "examples": [
         {
           "title": "Res válida",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Login efetuado com sucesso.\",\n  \"data\": {\n    \"id_user\": 1,\n    \"sector\": 1\n  },\n  \"metadata\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n  },\n  \"status\": 200\n}",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Login efetuado com sucesso.\",\n  \"data\": {\n    \"id_user\": 1,\n    \"sector\": 1\n  },\n  \"metadata\": {\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n  },\n}",
           "type": "json"
         },
         {
           "title": "Res inválida",
-          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Credenciais inválidas.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 400\n}",
+          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Credenciais inválidas.\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -170,7 +170,7 @@
             "group": "Body",
             "type": "string",
             "optional": false,
-            "field": "Token",
+            "field": "resetToken",
             "description": "<p>Url encoded token.</p>"
           }
         ]
@@ -192,12 +192,12 @@
       "examples": [
         {
           "title": "Res válida",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Dados de acesso enviados no email yan@almeida.com\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Dados de acesso enviados no email yan@almeida.com\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Res inválida - CPF ",
-          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"CPF não encontrado\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"CPF não encontrado\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -231,7 +231,7 @@
       "examples": [
         {
           "title": "Expired",
-          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -316,12 +316,12 @@
       "examples": [
         {
           "title": "Res válida",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Cadastro efetuado com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Cadastro efetuado com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Res inválida",
-          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"cpf\": \"CPF obrigatório.\",\n      \"email\": \"Email não é válido.\",\n      \"name\": \"Nome não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n  \"status\": 400\n}",
+          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"cpf\": \"CPF obrigatório.\",\n      \"email\": \"Email não é válido.\",\n      \"name\": \"Nome não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n}",
           "type": "json"
         }
       ]
@@ -387,22 +387,22 @@
       "examples": [
         {
           "title": "Conflict",
-          "content": "HTTP/1.1 (409) Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 409\n}",
+          "content": "HTTP/1.1 (409) Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Expired",
-          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Sector",
-          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Token",
-          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -438,7 +438,7 @@
       "examples": [
         {
           "title": "Res válida",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Dados alterados com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Dados alterados com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -504,22 +504,22 @@
       "examples": [
         {
           "title": "Not found",
-          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Expired",
-          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Sector",
-          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Token",
-          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -597,12 +597,12 @@
       "examples": [
         {
           "title": "Res válida",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Dados alterados com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Dados alterados com sucesso.\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "object"
         },
         {
           "title": "Res inválida",
-          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"email\": \"Email não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n  \"status\": 400\n}",
+          "content": "HTTP/1.1 (400) Bad Request\n{\n  \"message\": \"Requisição inválida.\",\n  \"data\": null,\n  \"metadata\": {\n    \"error\": {\n      \"email\": \"Email não é válido.\",\n      \"phone\": \"Telefone não é válido.\",\n      \"sector\": \"Setor não é válido.\",\n      \"gender\": \"Sexo não é válido.\"\n    }\n  },\n}",
           "type": "object"
         }
       ]
@@ -674,27 +674,27 @@
       "examples": [
         {
           "title": "Not found",
-          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Conflict",
-          "content": "HTTP/1.1 (409) Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 409\n}",
+          "content": "HTTP/1.1 (409) Conflict\n{\n  \"message\": \"Dado(s) já cadastrado(s).\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Expired",
-          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Sector",
-          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Token",
-          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -717,7 +717,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Requisição efetuada com sucesso.\",\n  \"data\": {\n    \"total\": n,\n    \"users\": [\n      {\n        \"id\": 1,\n        \"name\": \"Yan Almeida Garcia\",\n        \"about\": \"Apenas um teste!\",\n        \"sector\": \"Direção\"\n      },\n        ...\n    ]\n  },\n  \"metadata\": {},\n  \"status\": 200\n}",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Requisição efetuada com sucesso.\",\n  \"data\": {\n    \"total\": n,\n    \"users\": [\n      {\n        \"id\": 1,\n        \"name\": \"Yan Almeida Garcia\",\n        \"about\": \"Apenas um teste!\",\n        \"sector\": \"Direção\"\n      },\n        ...\n    ]\n  },\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -783,22 +783,22 @@
       "examples": [
         {
           "title": "Not found",
-          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Expired",
-          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Sector",
-          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Token",
-          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -834,7 +834,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Requisição efetuada com sucesso.\",\n  \"data\": {\n   \"user\": [\n     {\n       \"id\": 1,\n       \"name\": \"Yan Almeida Garcia\",\n       \"email\": \"yan@almeida.com\",\n       \"cpf\": \"000.000.000-00\",\n       \"phone\": \"(00) 91234-5678\",\n       \"sector\": \"Direção\"\n       \"gender\": \"Não informar\"\n     },\n   ]\n },\n \"metadata\": {},\n \"status\": 200\n}",
+          "content": "HTTP/1.1 (200) OK\n{\n  \"message\": \"Requisição efetuada com sucesso.\",\n  \"data\": {\n   \"user\": [\n     {\n       \"id\": 1,\n       \"name\": \"Yan Almeida Garcia\",\n       \"email\": \"yan@almeida.com\",\n       \"cpf\": \"000.000.000-00\",\n       \"phone\": \"(00) 91234-5678\",\n       \"sector\": \"Direção\"\n       \"gender\": \"Não informar\"\n     },\n   ]\n },\n \"metadata\": {},\n}",
           "type": "json"
         }
       ]
@@ -900,22 +900,22 @@
       "examples": [
         {
           "title": "Not found",
-          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 404\n}",
+          "content": "HTTP/1.1 (404) Not Found\n{\n  \"message\": \"Não encontrado.\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Expired",
-          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Jwt\n{\n  \"message\": \"Invalid token - jwt expired\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Sector",
-          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Decoded Sector\n{\n  \"message\": \"Invalid token - sector\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         },
         {
           "title": "Token",
-          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n  \"status\": 401\n}",
+          "content": "HTTP/1.1 (401) Unauthorized Token\n{\n  \"message\": \"Invalid token - token\",\n  \"data\": null,\n  \"metadata\": {},\n}",
           "type": "json"
         }
       ]
